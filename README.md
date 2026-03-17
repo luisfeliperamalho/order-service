@@ -1,10 +1,53 @@
 # 🧾 Order Service
 
-A backend service for order management built with **Java + Spring Boot**, following **Clean Architecture principles**.
+A robust and scalable backend service for order management, built with **Java 21 + Spring Boot**, applying **Clean Architecture** and **Domain-Driven Design (DDD)** principles.
 
 ---
 
-## 🚀 Technologies
+## 📌 Overview
+
+This project demonstrates how to design and implement a backend service with a strong separation of concerns, focusing on **maintainability**, **testability**, and **scalability**.
+
+The system exposes RESTful endpoints to manage orders and persists data using PostgreSQL.
+
+---
+
+## 🏗️ Architecture
+
+The project is structured following **Clean Architecture**, ensuring that business rules remain independent from frameworks and external concerns.
+
+```
+src/main/java/com/luisdev/orderservice
+│
+├── application       # Use cases (business flows)
+│   ├── dto
+│   └── usecase
+│
+├── domain            # Core business logic
+│   ├── entity
+│   └── repository
+│
+├── infrastructure    # External concerns
+│   ├── controller
+│   ├── persistence
+│   │   ├── entity
+│   │   ├── repository
+│   │   └── mapper
+│   └── config
+│
+└── shared            # Shared components (mappers, utils)
+```
+
+### 🔥 Key Design Decisions
+
+* **Dependency inversion**: domain does not depend on frameworks
+* **Use case isolation**: each business operation is encapsulated
+* **Layered responsibility**: clear separation between API, domain, and persistence
+* **Mapping layer**: decouples domain entities from persistence models
+
+---
+
+## 🚀 Tech Stack
 
 * Java 21
 * Spring Boot
@@ -15,41 +58,30 @@ A backend service for order management built with **Java + Spring Boot**, follow
 
 ---
 
-## 🏗️ Architecture
+## 🔌 API
 
-This project follows **Clean Architecture**, separating responsibilities into layers:
-
-```
-application  → use cases
-domain       → business rules
-infrastructure → controllers, persistence
-```
-
----
-
-## 📦 Features
-
-* Create orders
-* REST API with Spring Boot
-* Database persistence with PostgreSQL
-* Layered architecture (Domain-driven)
-
----
-
-## 🔌 API Endpoints
-
-### Create Order
+### ➕ Create Order
 
 ```
 POST /orders
 ```
 
-**Request Body:**
+#### Request
 
 ```json
 {
   "description": "New order",
-  "amount": 100.0
+  "amount": 150.0
+}
+```
+
+#### Response
+
+```json
+{
+  "id": 1,
+  "description": "New order",
+  "amount": 150.0
 }
 ```
 
@@ -61,35 +93,56 @@ POST /orders
 docker-compose up -d
 ```
 
+This will start:
+
+* PostgreSQL database
+* Supporting services (if configured)
+
 ---
 
-## ▶️ Running locally
+## ▶️ Running Locally
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
----
+Application will be available at:
 
-## 🧠 What I learned
-
-* Clean Architecture in practice
-* Dependency Injection with Spring
-* REST API design
-* Database integration with JPA
-* Dockerized environment
+```
+http://localhost:8080
+```
 
 ---
 
-## 📌 Next Steps
+## 🧪 Future Improvements
 
-* Add validation
-* Implement update/delete
-* Add unit tests
-* Add authentication (JWT)
+* ✅ Input validation (Bean Validation)
+* 🔐 Authentication & Authorization (JWT)
+* 🧪 Unit and integration tests
+* 📊 Observability (logs, metrics)
+* 📄 API documentation (OpenAPI / Swagger)
+* 🚀 CI/CD pipeline
+
+---
+
+## 📚 What This Project Demonstrates
+
+* Practical application of **Clean Architecture**
+* Use of **DDD concepts in a real backend**
+* REST API design with Spring Boot
+* Integration with relational databases using JPA
+* Separation between domain and infrastructure layers
 
 ---
 
 ## 👨‍💻 Author
 
-Developed by Luis Felipe 🚀
+**Luis Felipe Ramalho Oliveira**
+
+Backend Developer focused on building scalable and maintainable systems.
+
+---
+
+## ⭐ Final Notes
+
+This project is part of my journey to deepen my expertise in backend development and software architecture, aiming to build production-ready systems aligned with industry best practices.
